@@ -1,0 +1,2 @@
+Aquí se guardan automáticamente los archivos de audio (mp3, wav, ogg, m4a)
+que subas desde el panel de Podcasts.

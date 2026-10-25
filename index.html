@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>DDP Noticias - Diálogo y Desarrollo Perú</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Cabin:400,500,600&subset=latin-ext,vietnamese" rel="stylesheet">
+    <!-- CSS original del proyecto -->
+    <link rel="stylesheet" href="assets/web/css/style-starter.css">
+    <link rel="stylesheet" href="assets/web/css/ajustes.css">
+</head>
+
+<body>
+<!-- Header -->
+<!-- Encabezado compartido -->
+<div id="header-container"></div>
+<main id="contenido">
+    <!-- Hero -->
+    <section class="w3l-video w3l-homeblock3" id="video">
+        <div class="container-fluid">
+            <div class="video-grids-info row">
+                <div class="video-gd-right col-lg-6 p-0">
+                    <div class="position-relative">
+                        <a id="destacado-enlace" href="#">
+                            <img id="destacado-imagen"
+                                 src="assets/web/img/placeholder.jpg"
+                                 alt="Reportaje destacado"
+                                 class="img-fluid">
+                        </a>
+                    </div>
+                </div>
+                <div class="video-gd-left col-lg-6 p-lg-5 p-4 align-self">
+                    <div class="p-xl-4 p-0 video-wrap">
+                        <h5 id="destacado-fecha">Cargando...</h5>
+                        <h3 class="title-big text-left mb-4">
+                            <a id="destacado-titulo" href="#">Cargando reportaje...</a>
+                        </h3>
+                        <p id="destacado-resumen">Obteniendo información desde el servidor...</p>
+                        <a id="destacado-leer" href="#" class="btn mt-4 p-0">
+                            Leer <span class="fa fa-arrow-right"></span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Reportajes recientes -->
+    <div class="grids-block-5 py-1" id="reportajes">
+        <section class="py-lg-4 py-md-3">
+            <div class="container">
+                <div class="row" id="lista-reportajes"></div>
+                <div class="pagination">
+                    <ul> <li> <a href="paginas/reportajes.html">Ver todos</a> </li> </ul>
+                </div>
+            </div>
+        </section>
+    </div>
+    <!-- Noticias -->
+    <div class="grids-block-5 py-1" id="actualidad">
+        <section class="py-lg-4 py-md-3">
+            <div class="container">
+                <div class="title-content text-center mb-4">
+                    <h3 class="title-big">Actualidad</h3>
+                </div>
+                <div class="row" id="lista-noticias"></div>
+                <div class="pagination">
+                    <ul>
+                        <li>
+                            <a target="_blank" rel="noopener"
+                               href="https://www.facebook.com/DialogoyDesarrolloPeru">
+                                Ver todos
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </div>
+    <!-- Boletín -->
+    <section class="w3l-homeblock5 py-0" id="boletin">
+        <div class="container py-lg-5 py-4">
+            <div class="row" id="boletin-contenido">
+                <div class="col-12 text-center">
+                    <p>Cargando boletín...</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Podcasts -->
+    <section class="w3l-services2 py-5" id="podcast">
+        <div class="container py-lg-5 py-4">
+            <div class="title-content text-center mb-lg-5 mb-4">
+                <h3 class="title-big">Podcast</h3>
+            </div>
+            <div class="row" id="lista-podcasts"></div>
+            <div class="text-center">
+                <a href="paginas/podcast.html"
+                   class="btn btn-style btn-primary mt-md-5 mt-4">
+                    Ver todos
+                </a>
+            </div>
+        </div>
+    </section>
+    <!-- Especiales -->
+    <section class="w3l-team py-5" id="especiales">
+        <div class="container py-lg-5 py-4">
+            <div class="title-content text-center mb-lg-5 mb-4">
+                <h3 class="title-big">Especiales</h3>
+            </div>
+            <div class="owl-carousel owl-especiales owl-theme text-center" id="lista-especiales"></div>
+        </div>
+    </section>
+    <!-- Sobre D&D -->
+    <section class="w3l-banner py-0" id="sobre-dd">
+        <div class="container-fluid p-0">
+            <div class="row">
+                <div class="col-lg-6 p-lg-5 p-4 align-self">
+                    <div class="p-xl-4 p-0">
+                        <h5 class="title-small mb-2">DDP Noticias</h5>
+                        <h3 class="title-banner">Diálogo y Desarrollo Perú</h3>
+                        <p class="mt-4">
+                            Somos un espacio de periodismo independiente que busca visibilizar
+                            las acciones de diálogo en el país desde una mirada constructiva.
+                        </p>
+                        <a href="paginas/sobre.html" class="btn btn-style btn-primary mt-4">
+                            Nosotros
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-6 p-0">
+                    <div class="position-relative">
+                        <img src="assets/web/img/bannerimg.jpg" class="img-fluid" alt="Diálogo y Desarrollo">
+                        <a href="#small-dialog" class="popup-with-zoom-anim play-view text-center position-absolute"
+                            aria-label="Reproducir video de YouTube">
+                            <span class="video-play-icon"> <span class="fa fa-play"></span> </span>
+                        </a>
+                        <div id="small-dialog" class="zoom-anim-dialog mfp-hide">
+                            <iframe src="https://www.youtube.com/embed/2jI6fHBtRJU" title="Video de Diálogo y Desarrollo Perú"
+                                allow="autoplay; fullscreen" allowfullscreen>
+                            </iframe>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+<div id="footer-container"></div>
+<!-- Librerías originales -->
+<script src="assets/web/js/jquery-3.3.1.min.js"></script>
+<script src="assets/web/js/theme-change.js"></script>
+<script src="assets/web/js/easyResponsiveTabs.js"></script>
+<script src="assets/web/js/owl.carousel.js"></script>
+<script src="assets/web/js/jquery.magnific-popup.min.js"></script>
+<script src="assets/web/js/bootstrap.min.js"></script>
+<!-- Nuestro JavaScript: HTML -> fetch() -> API -->
+<script src="assets/web/js/header-loader.js"></script>
+<script src="assets/web/js/home-api.js"></script>
+<script src="assets/web/js/footer-loader.js"></script>
+<script>
+$(document).ready(function () {
+    $('.popup-with-zoom-anim').magnificPopup({
+        type: 'inline',
+        fixedContentPos: false,
+        fixedBgPos: true,
+        overflowY: 'auto',
+        closeBtnInside: true,
+        preloader: false,
+        midClick: true,
+        removalDelay: 300,
+        mainClass: 'my-mfp-zoom-in'
+    });
+});
+</script>
+</body>
+</html>

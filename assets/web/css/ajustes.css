@@ -1,0 +1,417 @@
+body { padding-top: 112px; }
+@media (max-width: 991px) { body { padding-top: 78px; } }
+#actualidad { display: block; scroll-margin-top: 112px; }
+
+.foto-recorte {
+  position: relative;
+  display: block;
+  overflow: hidden;
+}
+
+/* Esquina roja superior derecha */
+.foto-recorte::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: #e0020d;
+  clip-path: polygon(
+    100% 0%, 62.1% 0%, 70.4% 1.6%, 74.7% 3.2%, 78.1% 4.8%, 80.6% 6.4%,
+    82.9% 8%, 84.6% 9.6%, 86.2% 11.2%, 87.9% 12.8%, 89% 14.4%, 90.3% 16%,
+    91.2% 17.6%, 92.2% 19.2%, 93.2% 20.8%, 94% 22.4%, 94.7% 24%, 95.4% 25.6%,
+    96.1% 27.2%, 96.5% 28.8%, 97.1% 30.4%, 97.6% 32%, 97.9% 33.6%, 98.3% 35.2%,
+    98.6% 36.8%, 98.9% 38.4%, 100% 38.4%
+  );
+  z-index: 2;
+  pointer-events: none;
+}
+
+/* Curva blanca inferior derecha */
+.foto-recorte::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: #fff;
+  clip-path: polygon(
+    100% 59.2%, 99.7% 59.2%, 99.7% 60.8%, 99.6% 62.4%, 99.4% 64%, 99.3% 65.6%,
+    99% 67.2%, 98.9% 68.8%, 98.6% 70.4%, 98.3% 72%, 98.1% 73.6%, 97.8% 75.2%,
+    97.5% 76.8%, 97.1% 78.4%, 96.7% 80%, 96.1% 81.6%, 95.7% 83.2%, 95.1% 84.8%,
+    94.6% 86.4%, 94% 88%, 93.5% 89.6%, 92.6% 91.2%, 92.1% 92.8%, 91.2% 94.4%,
+    90.6% 96%, 89.7% 97.6%, 88.9% 99.2%, 88.9% 100%, 100% 100%
+  );
+  z-index: 3;
+  pointer-events: none;
+}
+
+/* ===== Tarjetas de podcast clickeables (index.php y paginas/podcast.php) ===== */
+.podcast-card {
+    cursor: pointer;
+    position: relative;
+    transition: transform .15s ease;
+}
+.podcast-card:hover,
+.podcast-card:focus {
+    transform: translateY(-4px);
+    outline: none;
+}
+.podcast-card .podcast-play-icon {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    font-size: 22px;
+    color: #e0020d;
+    background: #fff;
+    border-radius: 50%;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 1px 4px rgba(0,0,0,.25);
+}
+.podcast-card--activa .podcast-play-icon .fa-play::before { content: "\f04c"; } /* icono de pausa cuando está sonando */
+.podcast-card--activa {
+    box-shadow: 0 0 0 2px #e0020d;
+    border-radius: 6px;
+}
+.podcast-card--sin-audio {
+    cursor: not-allowed;
+    opacity: .55;
+}
+.podcast-card--sin-audio .podcast-play-icon { display: none; }
+
+/* ===== Barra de reproductor de podcasts persistente (tipo app de música) ===== */
+.ddp-player-bar {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1050;
+    display: flex;
+    flex-direction: column;
+    background: #1c1c1c;
+    color: #fff;
+    padding: 6px 20px 10px;
+    box-shadow: 0 -2px 10px rgba(0,0,0,.35);
+}
+.ddp-player-bar[hidden] { display: none; }
+
+/* Fila 1: barra de progreso arrastrable + tiempo transcurrido/duración */
+.ddp-player-progreso {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 4px 0 6px;
+}
+.ddp-player-tiempo {
+    font-size: 11px;
+    color: #bbb;
+    min-width: 36px;
+    flex-shrink: 0;
+    font-variant-numeric: tabular-nums;
+}
+.ddp-player-tiempo--actual { text-align: right; }
+.ddp-player-seek {
+    flex: 1 1 auto;
+    -webkit-appearance: none;
+    appearance: none;
+    height: 4px;
+    border-radius: 2px;
+    background: rgba(255,255,255,.25);
+    accent-color: #e0020d;
+    cursor: pointer;
+}
+.ddp-player-seek::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: #e0020d;
+    cursor: pointer;
+    box-shadow: 0 0 0 3px rgba(224,2,13,.25);
+}
+.ddp-player-seek::-moz-range-thumb {
+    width: 12px;
+    height: 12px;
+    border: none;
+    border-radius: 50%;
+    background: #e0020d;
+    cursor: pointer;
+}
+.ddp-player-seek::-moz-range-track {
+    height: 4px;
+    border-radius: 2px;
+    background: rgba(255,255,255,.25);
+}
+
+/* Fila 2: miniatura + título, controles (anterior/play/siguiente), volumen, cerrar */
+.ddp-player-fila {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    flex-wrap: wrap;
+}
+
+.ddp-player-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    min-width: 0;
+    flex: 1 1 200px;
+}
+.ddp-player-thumb {
+    width: 38px;
+    height: 38px;
+    border-radius: 6px;
+    object-fit: cover;
+    flex-shrink: 0;
+}
+.ddp-player-titulo {
+    font-size: 14px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.ddp-player-controls {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-shrink: 0;
+}
+.ddp-player-controls button {
+    background: transparent;
+    border: none;
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.ddp-player-controls button:hover { background: rgba(255,255,255,.12); }
+#ddp-player-toggle { background: #e0020d; font-size: 15px; }
+#ddp-player-toggle:hover { background: #c40109; }
+
+/* Control de volumen vertical: usamos un input range horizontal rotado */
+.ddp-player-volumen {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-shrink: 0;
+}
+.ddp-player-volumen #ddp-player-vol {
+    -webkit-appearance: slider-vertical; /* Chrome/Edge/Safari: volumen realmente vertical */
+    writing-mode: vertical-lr;
+    direction: rtl;
+    width: 22px;
+    height: 70px;
+    padding: 0;
+    cursor: pointer;
+    accent-color: #e0020d;
+}
+
+.ddp-player-close {
+    background: transparent;
+    border: none;
+    color: #bbb;
+    font-size: 16px;
+    cursor: pointer;
+    flex-shrink: 0;
+}
+.ddp-player-close:hover { color: #fff; }
+
+/* Deja espacio para que la barra no tape el contenido ni el botón "ir arriba" */
+body:has(.ddp-player-bar:not([hidden]))  { padding-bottom: 86px; }
+#movetop { bottom: 96px; }
+
+@media (max-width: 575px) {
+    .ddp-player-fila { gap: 10px; }
+    .ddp-player-bar { padding: 4px 12px 8px; }
+    .ddp-player-titulo { max-width: 110px; }
+    .ddp-player-volumen { display: none; } /* en pantallas muy chicas priorizamos los controles principales */
+}
+
+
+/* ===== Breadcrumb: Inicio / Reportajes ===== */
+.breadcrumb-area .breadcrumb {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+.breadcrumb-area .breadcrumb li {
+    display: inline-flex;
+    align-items: center;
+    list-style: none !important;
+    margin: 0;
+    padding: 0;
+}
+.breadcrumb-area .breadcrumb li + li::before {
+    content: "/";
+    color: var(--font-color);
+    padding: 0 8px;
+}
+.breadcrumb-area .breadcrumb li::marker {
+    content: "";
+}
+
+/* ===== Sidebar "Últimas noticias" / "Archivos" (paginas/reportaje.php) =====
+   La causa real de las viñetas y el gris era esta regla del tema original
+   (assets/web/css/style-starter.css, ~línea 12439):
+       .w3l-blog .categories ul li { list-style-type: disc; color: #aaa; }
+   Como .ultimas-noticias-lista y el <ul> de Archivos están dentro de
+   .categories, heredaban la viñeta y el gris de esa regla. La corregimos
+   aquí mismo, sobre el selector real, en vez de dejar la regla vieja suelta. */
+.w3l-blog .categories ul li {
+    list-style: none !important;
+    padding-left: 0 !important;
+    margin-left: 0 !important;
+    color: var(--font-color);
+}
+.w3l-blog .categories ul li::before,
+.w3l-blog .categories ul li::after {
+    content: none !important;
+    display: none !important;
+}
+.w3l-blog .categories ul li a {
+    color: var(--heading-color) !important; /* antes heredaba gris (#888) del tema */
+}
+.ultimas-noticias-lista li a {
+    font-weight: 700 !important;
+}
+
+/* ==========================================
+   DIMENSIONES UNIFORMES DE IMÁGENES
+   Reportajes, Noticias y Boletines
+   ========================================== */
+
+.grids5-info > a.foto-recorte,
+.grids5-info > a.d-block:not(.foto-recorte),
+.grids5-info > span.d-block {
+    display: block;
+    width: 100%;
+    height: 230px;
+    overflow: hidden;
+}
+
+.grids5-info > a.foto-recorte img,
+.grids5-info > a.d-block:not(.foto-recorte) img,
+.grids5-info > span.d-block img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+}
+/* Galería de fotos dentro de un reportaje individual (paginas/reportaje.php) */
+.reportaje-galeria-item {
+    display: block;
+    width: 100%;
+    height: 160px;
+    overflow: hidden;
+    border-radius: var(--border-radius);
+}
+.reportaje-galeria-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+}
+/* ===== Selector de tema claro / oscuro ===== */
+.theme-switch-wrapper {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+    margin: 0 0 0 16px;
+}
+.theme-switch-wrapper .mode-container {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 22px;
+    height: 22px;
+    margin: 0;
+    padding: 0;
+    color: var(--nav-color);
+    font-size: 15px;
+}
+.theme-switch {
+    position: relative;
+    display: inline-block;
+    width: 42px;
+    height: 23px;
+    margin: 0;
+    flex-shrink: 0;
+    cursor: pointer;
+}
+.theme-switch input {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    opacity: 0;
+}
+.theme-switch::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 20px;
+    background: #b9b9b9;
+    transition: background .2s ease;
+}
+.theme-switch::after {
+    content: "";
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    width: 17px;
+    height: 17px;
+    border-radius: 50%;
+    background: #fff;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, .25);
+    transition: transform .2s ease;
+}
+.theme-switch:has(input:checked)::before {
+    background: var(--primary-color);
+}
+.theme-switch:has(input:checked)::after {
+    transform: translateX(19px);
+}
+.theme-switch input:focus-visible + span {
+    outline: 2px solid var(--primary-color);
+    outline-offset: 3px;
+}
+.theme-switch input:focus-visible {
+    outline: 2px solid var(--primary-color);
+}
+@media (max-width: 991px) {
+    .theme-switch-wrapper {
+        margin: 12px 0;
+    }
+}
+/* Corregir desbordamiento horizontal en la sección Sobre D&D */
+#sobre-dd > .container-fluid > .row {
+    margin-left: 0;
+    margin-right: 0;
+}
+/* Conserva los saltos de línea del resumen del boletín */
+.boletin-resumen {
+    white-space: pre-line;
+}
+.btn-acceso-admin {
+    background-color: #265a93;
+    border-color: #132e4b; 
+    color: #fff;
+}
+.btn-acceso-admin:hover,
+.btn-acceso-admin:focus {
+    background-color: #0d6efd;
+    border-color: #0a58ca;
+    color: #fff;
+}

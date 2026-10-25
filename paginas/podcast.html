@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Podcast - Diálogo y Desarrollo Perú</title>
+
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css?family=Cabin:400,500,600&subset=latin-ext,vietnamese">
+
+    <link rel="stylesheet" href="../assets/web/css/style-starter.css">
+    <link rel="stylesheet" href="../assets/web/css/ajustes.css">
+</head>
+
+<body>
+
+    <!-- Encabezado compartido -->
+    <div id="header-container"></div>
+
+    <!-- Migas de pan -->
+    <section class="breadcrumb-area py-sm-5 py-4">
+        <div class="container">
+            <div class="breadcrumb-contents">
+                <h2 class="title-big">Podcast</h2>
+                <ul class="breadcrumb">
+                    <li><a href="../index.html">Inicio</a></li>
+                    <li class="active">Podcast</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Episodios de podcast -->
+    <section class="py-5">
+        <div class="container">
+
+            <div id="estado-podcasts" class="text-center py-3" role="status">
+                Cargando episodios...
+            </div>
+
+            <div class="row" id="lista-podcasts"></div>
+
+            <!-- Videos -->
+            <div id="seccion-videos" hidden>
+                <h3 class="title-big text-center my-5">Videos</h3>
+                <div class="row" id="lista-videos"></div>
+            </div>
+
+            <div id="estado-videos"
+                 class="text-center py-3"
+                 role="status"
+                 hidden>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Pie de página y reproductor compartidos -->
+    <div id="footer-container"></div>
+
+    <!-- Bibliotecas compartidas -->
+    <script src="../assets/web/js/jquery-3.3.1.min.js"></script>
+    <script src="../assets/web/js/theme-change.js"></script>
+    <script src="../assets/web/js/easyResponsiveTabs.js"></script>
+    <script src="../assets/web/js/owl.carousel.js"></script>
+    <script src="../assets/web/js/jquery.magnific-popup.min.js"></script>
+    <script src="../assets/web/js/bootstrap.min.js"></script>
+
+    <!-- Cargadores compartidos -->
+    <script src="../assets/web/js/header-loader.js"></script>
+    <script src="../assets/web/js/footer-loader.js"></script>
+
+    <!-- Lógica de esta página -->
+    <script src="../assets/web/js/podcast-api.js"></script>
+
+</body>
+</html>
