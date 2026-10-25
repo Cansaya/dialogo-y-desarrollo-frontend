@@ -22,7 +22,7 @@ async function iniciarReportaje() {
 
     try {
         const respuesta = await fetch(
-            `../api/reportaje.php?id=${encodeURIComponent(id)}`
+            `https://3.135.217.244/api/reportaje.php?id=${encodeURIComponent(id)}`
         );
 
         const datos = await respuesta.json();
