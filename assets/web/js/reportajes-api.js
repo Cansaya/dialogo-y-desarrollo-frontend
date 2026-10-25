@@ -1,7 +1,7 @@
 (function () {
     'use strict';
 
-    const API_URL = '../api/reportajes.php';
+    const API_URL = 'https://3.135.217.244/api/reportajes.php';
     const RUTA_IMAGENES = '../assets/web/img/';
 
     const lista = document.getElementById('lista-reportajes');
