@@ -37,8 +37,6 @@
 
                 const BASE_GITHUB_PAGES = '/dialogo-y-desarrollo-frontend/';
 
-                const BASE_GITHUB_PAGES = '/dialogo-y-desarrollo-frontend/';
-
                 window.DDP_PODCASTS = datos.podcasts.map(function (podcast) {
                     return {
                         id: Number(podcast.id),
