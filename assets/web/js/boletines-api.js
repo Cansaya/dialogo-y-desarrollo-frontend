@@ -9,7 +9,7 @@
         return;
     }
 
-    const API_URL = '../api/boletines.php';
+    const API_URL = 'https://3.135.217.244/api/boletines.php';
     const IMAGENES_URL = '../assets/web/img/';
 
     // Formatear la fecha como en la versión PHP original.
