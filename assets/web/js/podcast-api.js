@@ -21,7 +21,7 @@
 
         async function cargarPodcasts() {
             try {
-                const respuesta = await fetch('../api/podcasts.php');
+                const respuesta = await fetch('https://3.135.217.244/api/podcasts.php');
 
                 if (!respuesta.ok) {
                     throw new Error('HTTP ' + respuesta.status);
@@ -119,7 +119,7 @@
 
         async function cargarVideos() {
             try {
-                const respuesta = await fetch('../api/videos.php');
+                const respuesta = await fetch('https://3.135.217.244/api/videos.php');
 
                 if (!respuesta.ok) {
                     throw new Error('HTTP ' + respuesta.status);
