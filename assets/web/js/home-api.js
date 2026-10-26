@@ -295,12 +295,15 @@ function renderPodcasts(items) {
 
     // Construimos la lista que necesita reproductor.js.
     // Conservamos los identificadores originales de la API.
+    const BASE_GITHUB_PAGES = '/dialogo-y-desarrollo-frontend/';
+
     window.DDP_PODCASTS = items
         .filter(p => p.archivo_audio)
         .map(p => ({
             id: p.id,
             titulo: p.titulo || 'Podcast',
-            audio: `podcasts_audio/${encodeURIComponent(p.archivo_audio)}`
+            audio: BASE_GITHUB_PAGES + 'podcasts_audio/' +
+                   encodeURIComponent(p.archivo_audio)
         }));
 
     if (!items.length) {
