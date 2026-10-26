@@ -11,6 +11,7 @@
 
     const API_URL = 'https://3.135.217.244/api/boletines.php';
     const IMAGENES_URL = '../assets/web/img/';
+    const BASE_GITHUB_PAGES = '/dialogo-y-desarrollo-frontend/';
 
     // Formatear la fecha como en la versión PHP original.
     function formatearFecha(fecha) {
@@ -79,10 +80,14 @@
             boletin.pdf_disponible === true &&
             typeof boletin.url_pdf === 'string' &&
             boletin.url_pdf.length > 0;
+        
+        const urlPdf = pdfDisponible
+            ? BASE_GITHUB_PAGES + boletin.url_pdf.replace(/^\/+/, '')
+            : null;
 
         if (pdfDisponible) {
             const enlaceImagen = document.createElement('a');
-            enlaceImagen.href = boletin.url_pdf;
+            enlaceImagen.href = urlpdf;
             enlaceImagen.target = '_blank';
             enlaceImagen.rel = 'noopener noreferrer';
             enlaceImagen.className = 'd-block';
@@ -111,7 +116,7 @@
                 'Ver Boletín'
             );
 
-            enlacePdf.href = boletin.url_pdf;
+            enlacePdf.href = urlpdf;
             enlacePdf.target = '_blank';
             enlacePdf.rel = 'noopener noreferrer';
 
