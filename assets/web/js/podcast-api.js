@@ -35,12 +35,16 @@
 
                 listaPodcasts.replaceChildren();
 
+                const BASE_GITHUB_PAGES = '/dialogo-y-desarrollo-frontend/';
+
+                const BASE_GITHUB_PAGES = '/dialogo-y-desarrollo-frontend/';
+
                 window.DDP_PODCASTS = datos.podcasts.map(function (podcast) {
                     return {
                         id: Number(podcast.id),
                         titulo: podcast.titulo,
                         audio: podcast.tiene_audio && podcast.audio
-                            ? new URL(podcast.audio, window.location.origin).href
+                            ? BASE_GITHUB_PAGES + podcast.audio.replace(/^\/+/, '')
                             : null
                     };
                 });
