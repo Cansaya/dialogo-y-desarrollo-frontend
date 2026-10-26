@@ -77,13 +77,17 @@
         });
 
         const pdfDisponible =
-        boletin.pdf_disponible === true &&
-        typeof boletin.url_pdf === 'string' &&
-        boletin.url_pdf.length > 0;
+            boletin.pdf_disponible === true &&
+            typeof boletin.url_pdf === 'string' &&
+            boletin.url_pdf.length > 0;
+        
+        const urlPdf = pdfDisponible
+            ? BASE_GITHUB_PAGES + boletin.url_pdf.replace(/^\/+/, '')
+            : null;
 
         if (pdfDisponible) {
             const enlaceImagen = document.createElement('a');
-            enlaceImagen.href = boletin.url_pdf;
+            enlaceImagen.href = urlPdf;
             enlaceImagen.target = '_blank';
             enlaceImagen.rel = 'noopener noreferrer';
             enlaceImagen.className = 'd-block';
@@ -112,7 +116,7 @@
                 'Ver Boletín'
             );
 
-            enlacePdf.href = boletin.url_pdf;
+            enlacePdf.href = urlPdf;
             enlacePdf.target = '_blank';
             enlacePdf.rel = 'noopener noreferrer';
 
